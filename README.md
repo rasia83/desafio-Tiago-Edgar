@@ -1,132 +1,123 @@
-# CAIXA DA LANCHONETE
+![PROGRAMA START DB](start-db.png)
 
-## COMO BAIXAR O CÓDIGO E SUBMETER MINHA SOLUÇÃO?
-Para completar a etapa do desafio você terá que baixar a estrutura do código aqui na Azure, resolver o desafio e entregá-lo no repositório no seu github.
+# PROGRAMA START DB 
+### DESAFIO CAIXA DA LANCHONETE
+### Desenvolvido por Tiago Edgar Rasia
 
-### BAIXANDO A ESTRUTURA
-Para baixar a estrutura no formato zip, basta clicar neste [link](https://dev.azure.com/db-tecnologia/371ab069-cd1e-4ede-8ae5-fa54dd981c56/_apis/git/repositories/a3a8fe92-b324-4d6b-abbd-1953e46fb075/items?path=/&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=main&resolveLfs=true&%24format=zip&api-version=5.0&download=true).
+Email: [tiago_rasia@hotmail.com](mailto:tiago_rasia@hotmail.com) 
 
-
-### ENTREGANDO O DESAFIO
-Após resolver o desafio e validá-lo com os testes (mais detalhes nos tópicos abaixo), você terá que criar um repositório no [Github](https://github.com/) com o nome de `desafio-$seunome-$sobrenome` (substitua os nomes com $ pelo seu próprio nome e sobrenome). Deṕos disso, você pode enviar o link do seu repositório para que possamos validá-lo para o e-mail: `start@dbserver.com.br`
-
-Se você ainda não teve contato com essas ferramentas, não tem problema, separamos um material para lhe ajudar nessa etapa: [Como usar Git e Github na prática](https://www.youtube.com/watch?v=UBAX-13g8OM).
+LinkedIn: [Tiago Rasia](https://www.linkedin.com/in/tiagorasia/).
 
 
-## O DESAFIO
-Olá! Você foi contratado para automatizar o caixa da Lanchonete da DB.
-Sua missão será construir a lógica que calcula o valor de uma compra de acordo com o cardápio, regras e descontos da Lanchonete.
+Você pode conferir o [README Original](https://github.com/rasia83/desafio-Tiago-Edgar/blob/df5e0977ba81d62d48527e13e2c650dde4a64c47/README-original.md) aqui com as instruções para o desenvolvimento deste desafio.
+<BR>
+<BR>
 
-### CARDÁPIO
+### DESENVOLVENDO O CÓDIGO
 
-  | codigo    | descrição                   | valor   |
-  |-----------|-----------------------------|---------|
-  | cafe      | Café                        | R$ 3,00 |
-  | chantily  | Chantily (extra do Café)    | R$ 1,50 |
-  | suco      | Suco Natural                | R$ 6,20 |
-  | sanduiche | Sanduíche                   | R$ 6,50 |
-  | queijo    | Queijo (extra do Sanduíche) | R$ 2,00 |
-  | salgado   | Salgado                     | R$ 7,25 |
-  | combo1    | 1 Suco e 1 Sanduíche        | R$ 9,50 |
-  | combo2    | 1 Café e 1 Sanduíche        | R$ 7,50 |
-
-
-### FORMAS DE PAGAMENTO
-Atualmente a Lanchonete aceita as seguintes formas de pagamento:
- - dinheiro
- - debito
- - credito
-
-O sistema deve receber essa informação como string, utilizando a grafia exatamente igual aos exemplos acima.
-
-### DESCONTOS E TAXAS
- - Pagamento em dinheiro tem 5% de desconto
- - Pagamento a crédito tem acréscimo de 3% no valor total
-
-### OUTRAS REGRAS
-
-- Caso item extra seja informado num pedido que não tenha o respectivo item principal, apresentar mensagem "Item extra não pode ser pedido sem o principal".
-- Combos não são considerados como item principal.
-- É possível pedir mais de um item extra sem precisar de mais de um principal.
-- Se não forem pedidos itens, apresentar mensagem "Não há itens no carrinho de compra!"
-- Se a quantidade de itens for zero, apresentar mensagem "Quantidade inválida!".
-- Se o código do item não existir, apresentar mensagem "Item inválido!"
-- Se a forma de pagamento não existir, apresentar mensagem "Forma de pagamento inválida!"
-
-### O CÓDIGO
-Você está recebendo uma estrutura básica para desenvolver a lógica do caixa. O arquivo principal está localizado dentro da pasta `src` e se chama `caixa-da-lanchonete.js`. Você pode desenvolver a sua lógica criando outros arquivos, métodos e até mesmo outras classes, porém o resultado deve poder ser obtido através do método `calcularValorDaCompra`.
-
-> ALERTA:
-> É importante que a estrutura básica descrita acima não seja alterada, incluindo nome e parâmetros do método. Iremos validar sua solução através destes, assim como você pode validar através dos cenários de testes já implementados em `src/caixa-da-lanchonete.test.js`.
-
-### INSTALANDO E RODANDO NA SUA MÁQUINA
-1. Instalar o [Node](https://nodejs.org/en/)
-2. Instalar dependencias do projeto com o seguinte comando:
-```bash
-npm install
-```
-
-### VALIDANDO A SOLUÇÃO
-Junto com a estrutura básica você está recebendo alguns cenários de testes para auxiliar na validação da sua solução. Recomendamos que você crie mais casos de teste para aumentar a confiabilidade da sua solução.
-Para testar sua solução com os cenários já criados, basta rodar o seguinte comando:
-```bash
-npm test
-```
-
-Para saber mais consulte a [Documentação do Jest](https://jestjs.io/pt-BR/docs/getting-started).
-
-### INPUTS
-O método `calcularValorDaCompra` recebe dois parâmetros, `formaDePagamento` e `itens`, sendo o primeiro uma string com os possíveis valores válidos: `debito`, `credito` e `dinheiro`. O segundo parâmetro contém uma array dos itens que serão comprados. Cada item é uma string contendo o código do item e a quantidade do mesmo separados por uma vírgula.
-EXEMPLO:
+Inicialmente criei dois arquivos, um para as formas de pagamento e seus modificadores, <BR>
+e outro para o cardápio com os itens suas descrições, valores e se possuem dependência de um item principal.
 ```js
-['cafe,1','chantily,1']
+export const tabelaPagamento = {
+    dinheiro: { descricao: "Dinheiro", modificador: 0.95 },
+    debito: { descricao: "Débito", modificador: 1.0 },
+    credito: { descricao: "Crédito", modificador: 1.03 },
+};
 ```
-
-### OUPUTS
-O retorno do método `calcularValorDaCompra` deve ser sempre uma string e conteúdo dela pode ser ou o valor total da compra ou uma mensagem de erro conforme as regras descritas anteriormente. O valor da compra deve ser formatado com `R$` e decimais separados por vírgula.
-
-Para padronizar a quantidade de decimais, utilize o método `toFixed` do JavaScript. Esse método serve o propósito deste desafio, porém na vida real a regra de arredondamento deve ser conferida! Para saber mais consulte a [Documentação do Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed).
-EXEMPLO:
 ```js
-// exemplo de saída do valor da compra
-"R$ 6,00"
-
-// exemplo de saída de erro
-"Forma de pagamento inválida!"
+export const tabelaValores = {
+    cafe: { descricao: 'Café', valor: 3.0, dependencia: null },
+    chantily: { descricao: 'Chantily (extra do Café)', valor: 1.5, dependencia: 'cafe' },
+    suco: { descricao: 'Suco Natural', valor: 6.2, dependencia: null },
+    sanduiche: { descricao: 'Sanduíche', valor: 6.5, dependencia: null },
+    queijo: { descricao: 'Queijo (extra do Sanduíche)', valor: 2.0, dependencia: 'sanduiche' },
+    salgado: { descricao: 'Salgado', valor: 7.25, dependencia: null },
+    combo1: { descricao: '1 Suco e 1 Sanduíche', valor: 9.50, dependencia: null}, 
+    combo2: { descricao: '1 Café e 1 Sanduíche', valor: 7.5, dependencia: null }  
+};
 ```
-
-### EXEMPLOS
-
-EXEMPLO 1: Compra de chantily sem café.
+<BR>
+Com o método pré-definido que recebe uma forma de pagamento e os itens de um pedido.
 ```js
-new CaixaDaLanchonete()
-  .calcularValorDaCompra('debito', ['chantily,1']);
+calcularValorDaCompra(metodoDePagamento, itens)
 ```
-O resultado esperado deve ser:
-```
-"Item extra não pode ser pedido sem o principal"
-```
+<BR>
 
-<br/>
-
-EXEMPLO 2: Compra de café com chantily.
+Iniciei validando as informações recebidas.
 ```js
-new CaixaDaLanchonete()
-  .calcularValorDaCompra('debito', ['cafe,1','chantily,1']);
+if (itens === null || (Array.isArray(itens) && itens.length === 0)) {
+    return "Não há itens no carrinho de compra!";
+}
+if (metodoDePagamento === null || !tabelaPagamento[metodoDePagamento]) {
+    return "Forma de pagamento inválida!";
+}
 ```
-O resultado esperado deve ser:
-```
-"R$ 4,50"
-```
+<BR>
 
-<br/>
-
-EXEMPLO 3: Compra de combo e dois cafés
+Criei meu próprio array itensPedido para ter um maior controle na validação  <BR>
+especialmente com os itens extras que dependiam de um item principal .
 ```js
-new CaixaDaLanchonete()
-  .calcularValorDaCompra('credito', ['combo1,1','cafe,2']);
+let itensPedido = [];
+for (let itemInfo of itens) {
+    let [nome, quantidadeStr] = itemInfo.split(",");
+
+    if (!(nome in tabelaValores)) {
+        return "Item inválido!";
+    }
+
+    const quantidade = parseInt(quantidadeStr, 10);
+
+    if (quantidade == 0) {
+        return "Quantidade inválida!";
+    }
+
+    const itemPedido = [nome, quantidade];
+    itensPedido.push(itemPedido);
+}
 ```
-O resultado esperado deve ser:
+<BR>
+
+Percorrendo itensPedido efetuei de fato os cálculos do total da compra e apliquei o modificador conforme a forma de pagamento.
+```js
+for (let item of itensPedido) {
+    if (tabelaValores[item[0]].dependencia !== null) {
+        let dependenciaFaltando = true;
+        itensPedido.forEach((element) => {
+            if (element[0].startsWith(tabelaValores[item[0]].dependencia)) {
+                dependenciaFaltando = false;
+            }
+        });
+        if (dependenciaFaltando) {
+            return "Item extra não pode ser pedido sem o principal";
+        }
+    }
+
+    let valorItem = parseFloat(tabelaValores[item[0]].valor);
+    valorTotal += valorItem * item[1];
+}
+
+let modPagamento = tabelaPagamento[metodoDePagamento].modificador;
+valorTotal *= modPagamento;
 ```
-"R$ 15,96"
+<BR>
+
+Para exibir o resultado final estava utilizando o método .toLocaleString() <BR>
+mas um dos testes apresentava erro <BR>
+Teste >> compra de múltiplas quantidades em "credito" deve resultar em "R$ 36,56" <BR>
+valor calculado 36.565 apresentava o resultado errado para o teste  "R$ 36,57 <BR>
+para atingir os resultados do arquivo de testes usei o .toFixed() como foi orientado <BR>
+e então o .toLocaleString() 
+```js
+const casasDecimais = 2;
+let total2Fixed = valorTotal.toFixed(casasDecimais);
+let totalFormatado = parseFloat(total2Fixed).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+});
+
+return totalFormatado;
 ```
+<BR>
+
+![npm test](start-db_npm-test.png)
+
