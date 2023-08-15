@@ -77,12 +77,12 @@ class CaixaDaLanchonete {
          */
         const casasDecimais = 2;
         let total2Fixed = valorTotal.toFixed(casasDecimais);
-        let totalFormatado2 = parseFloat(total2Fixed).toLocaleString("pt-BR", {
+        let totalFormatado = parseFloat(total2Fixed).toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL"
         });
 
-        return totalFormatado2;
+        return totalFormatado;
 
     }
 
